@@ -1,6 +1,6 @@
 # AI Agent 課後作業
 
-這個專案用 Node.js CLI 完成課後作業的 5 個練習：角色聊天、Function Calling、RAG 搜尋、兩個工具同時使用，以及 Embeddings 相似度比較。
+這個專案用 Node.js CLI 完成課後作業的 5 個練習：角色聊天、計算機工具、簡易知識庫搜尋、天氣與時間工具，以及向量相似度實驗。
 
 ## 環境設定
 
@@ -62,7 +62,7 @@ npm run start:calculator
 10 + 5 * 2 是多少？
 ```
 
-## 作業 3：程式語言 RAG
+## 作業 3：簡易知識庫搜尋
 
 先建立本機向量資料：
 
@@ -76,7 +76,7 @@ npm run start:rag:init
 npm run start:rag:search
 ```
 
-輸入 `demo` 會跑三個測試問題。資料內容在 `data/knowledge/programming-languages.json`，包含 JavaScript、Python、Ruby、Go、Rust。
+輸入 `demo` 會跑三個測試問題。資料內容在 `data/knowledge/programming-languages.json`，包含 JavaScript、Python、Ruby、Go、Rust，共 5 筆。
 
 搜尋結果會像這樣：
 
@@ -107,7 +107,7 @@ npm run start:multi-tools
 
 第三個問題會讓模型同時用時間和天氣兩個工具。
 
-## 作業 5：相似度實驗
+## 作業 5：向量相似度實驗
 
 ```bash
 npm run start:similarity
@@ -195,7 +195,7 @@ npm run start:calculator
 screenshots/assignment-2-calculator.png
 ```
 
-### 作業 3：程式語言 RAG
+### 作業 3：簡易知識庫搜尋
 
 執行指令：
 
@@ -260,6 +260,42 @@ npm run start:multi-tools
 結果紀錄：
 
 ```text
+已測試時間工具、天氣工具，以及同一句問題同時呼叫兩個工具。
+
+問題 1：「現在幾點?」
+工具呼叫：get_current_time {}
+工具結果：{"timeZone":"Asia/Taipei","display":"2026/06/10 15:43:00（台灣時間）"}
+AI 回答目前台灣時間為 2026/06/10 15:43。
+
+問題 2：「桃園天氣如何?」
+工具呼叫：get_weather {"city":"Taoyuan"}
+工具結果：Taoyuan City, TW，陰、多雲，24.41°C，濕度 79%。
+AI 回答桃園目前天氣為陰、多雲，溫度約 24.4°C，濕度 79%。
+
+問題 3：「現在幾點?桃園天氣如何?」
+同一輪有兩個工具呼叫：
+1. get_current_time {}
+2. get_weather {"city":"Taoyuan"}
+AI 最後同時整理出台灣時間與桃園天氣，符合一次問兩件事時呼叫兩個工具的驗收標準。
+```
+
+截圖：
+
+```text
+screenshots/assignment-4-time-weather.png
+```
+
+### 作業 5：向量相似度實驗
+
+執行指令：
+
+```bash
+npm run start:similarity
+```
+
+結果紀錄：
+
+```text
 已測試。程式成功呼叫 Embeddings API，並計算三組句子的兩兩 cosine similarity。
 
 第 1 組「早餐情境」：
@@ -278,26 +314,6 @@ npm run start:multi-tools
 - Node.js CLI vs Rust 所有權：0.263
 
 觀察：同一生活情境或同一技術主題的分數較高；主題分散時分數較低，符合預期。
-```
-
-截圖：
-
-```text
-screenshots/assignment-4-time-weather.png
-```
-
-### 作業 5：相似度實驗
-
-執行指令：
-
-```bash
-npm run start:similarity
-```
-
-結果紀錄：
-
-```text
-待補截圖後填入實際輸出。
 ```
 
 截圖：
