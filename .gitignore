@@ -1,0 +1,7 @@
+.env
+node_modules/
+data/vector-store/*.json
+.history/
+coverage/
+screenshots/*.png
+screenshots/*.jpg
