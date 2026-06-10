@@ -1,0 +1,28 @@
+{
+  "name": "ai-agent-homework",
+  "version": "1.0.0",
+  "description": "AI Agent 課後作業：Node.js CLI、工具呼叫、RAG 與相似度實驗。",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start:role": "node src/assignments/vocabCoach.js",
+    "start:calculator": "node src/assignments/calculatorAgent.js",
+    "start:rag:init": "node src/assignments/ragInit.js",
+    "start:rag:search": "node src/assignments/ragSearch.js",
+    "start:multi-tools": "node src/assignments/multiToolsAgent.js",
+    "start:similarity": "node src/assignments/similarityLab.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.0.1",
+    "dotenv": "^17.4.2",
+    "openai": "^6.42.0",
+    "undici": "^8.4.1"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
